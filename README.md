@@ -5,7 +5,7 @@
 Pour commencer vous allez fork et cloner ce projet. 
 Utilisez la commande `npm install` qui installera tous les modules nécessaire (ngrx est inclus)
 
-Si vous avez un problème durant l'installation vueillez supprimer le fichier package-lock.json
+Si vous avez un problème durant l'installation veuillez supprimer le fichier package-lock.json
 
 # Partie 2 : 
 
