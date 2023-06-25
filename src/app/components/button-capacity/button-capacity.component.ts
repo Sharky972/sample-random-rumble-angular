@@ -9,9 +9,6 @@ export class ButtonCapacityComponent {
   @Input() player?: any;
   constructor() {
   }
-
-  ngOnInit(): void {
-  }
   onClick() {
     console.log('aie !');
   }
