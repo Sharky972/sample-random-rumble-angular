@@ -1,4 +1,4 @@
-# Royal Rumble 
+# Random Rumble 
 
 # Partie 1 : 
 
