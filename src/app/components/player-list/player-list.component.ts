@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { GameState } from 'src/app/reducers/game.reducer';
+import { IPlayer } from 'src/app/models/player.model';
+import { resetTurn } from 'src/app/actions/player.action';
 
 @Component({
   selector: 'app-player-list',
@@ -8,15 +11,16 @@ import { Store } from '@ngrx/store';
 })
 export class PlayerListComponent implements OnInit {
 
-  players:any = [
+  players?: IPlayer[];
 
-    { name: "John", pv: 100, pvMax: 100, mana: 30, manaMax: 30, id: 1 },
-    { name: "Jack", pv: 100, pvMax: 100, mana: 30, manaMax: 30, id: 2 },
-    { name: "Jessy", pv: 100, pvMax: 100, mana: 30, manaMax: 30, id: 3 },
-    { name: "Jenny", pv: 100, pvMax: 100, mana: 30, manaMax: 30, id: 4 }
-  ]
-  constructor() {
+  constructor(private store: Store<{ game: GameState }>) {
   }
-  ngOnInit() {
+  ngOnInit(): void {
+    this.store.select(state => state.game).subscribe((game: GameState) => {
+      this.players = game.players;
+      if (game.players.length === game.turns.length) {
+        this.store.dispatch(resetTurn())
+      }
+    });
   }
 }
