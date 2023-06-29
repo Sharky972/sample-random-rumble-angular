@@ -1,98 +1,84 @@
+import { Capacity } from "./Capacity.model";
+
+
 export interface IPlayer {
     id: number;
-    name: string;
-    pv: number;
-    pvMax: number;
-    points: number;
-    attacks: IAttack[];
-
-    canAttack: boolean;
-}
-export interface IAttack {
-    name: string;
-    damage: number;
-}
-export class Player implements IPlayer {
-    id: number;
+    avatar: string;
     name: string;
     pv: number;
     pvMax: number;
     mana: number;
     manaMax: number;
-    points: number;
-    canAttack: boolean;
-    attacks: IAttack[];
+    isInvincible: number | undefined;
+    capacities: Capacity[];
+}
+export const initialPlayers: IPlayer[] = []; //init player with dispatch action in app.component.ts
 
-    constructor(id: number, name: string, pv: number, pvMax: number, mana: number, manaMax: number, points: number, attacks: IAttack[], canAttack: boolean) {
+
+export abstract class Player implements IPlayer {
+    id: number;
+    avatar: string;
+    name: string;
+    pv: number;
+    pvMax: number;
+    mana: number;
+    isInvincible: number | undefined;
+    abstract type: string;
+    manaMax: number;
+    capacities: Capacity[];
+
+    constructor(id: number, avatar: string, name: string, pv: number, pvMax: number, mana: number, manaMax: number, capacities: Capacity[]) {
         this.id = id;
+        this.avatar = avatar;
         this.name = name;
         this.pv = pv;
         this.pvMax = pvMax;
         this.mana = mana;
         this.manaMax = manaMax;
-        this.points = points;
-        this.attacks = attacks;
-        this.canAttack = canAttack;
+        this.capacities = capacities;
     }
 }
 
-// Le state initial contiendra nos 4 joueurs
-export const initialPlayers: IPlayer[] = [
-    {
-        id: 1,
-        name: 'Player 1',
-        pv: 100,
-        pvMax: 100,
-        points: 0,
-        attacks: [
-            { name: 'Attack 1', damage: 10 },
-            { name: 'Attack 2', damage: 20 },
-            { name: 'Attack 3', damage: 30 },
-            { name: 'Attack 4', damage: 40 },
-        ],
-        canAttack: true,
-    },
-    {
-        id: 2,
-        name: 'Player 2',
-        pv: 120,
-        pvMax: 120,
-        points: 0,
-        attacks: [
-            { name: 'Attack 1', damage: 5 },
-            { name: 'Attack 2', damage: 10 },
-            { name: 'Attack 3', damage: 15 },
-            { name: 'Attack 4', damage: 20 },
-        ],
-        canAttack: true,
-    },
-    {
-        id: 3,
-        name: 'Player 3',
-        pv: 80,
-        pvMax: 80,
-        points: 0,
-        attacks: [
-            { name: 'Attack 1', damage: 15 },
-            { name: 'Attack 2', damage: 30 },
-            { name: 'Attack 3', damage: 45 },
-            { name: 'Attack 4', damage: 60 },
-        ],
+export class Warrior extends Player {
+    type = "Warrior";
+    constructor(id: number, avatar: string, name: string, pv: number, pvMax: number, mana: number, manaMax: number, capacities: Capacity[]) {
+        super(id, avatar, name, pv, pvMax, mana, manaMax, capacities);
+    }
+}
 
-        canAttack: true,
-    },
-    {
-        id: 4,
-        name: 'Player 4',
-        pv: 150,
-        pvMax: 150,
-        points: 0,
-        attacks: [
-            { name: 'Attack 1', damage: 8 },
-            { name: 'Attack 2', damage: 16 },
-            { name: 'Attack 3', damage: 24 },
-            { name: 'Attack 4', damage: 32 },
-        ],
-        canAttack: true,
-    },
-];
+export class Mage extends Player {
+    type = "Mage";
+    constructor(id: number, avatar: string, name: string, pv: number, pvMax: number, mana: number, manaMax: number, capacities: Capacity[]) {
+        super(id, avatar, name, pv, pvMax, mana, manaMax, capacities);
+    }
+}
+
+export class Healer extends Player {
+    type = "Healer";
+    constructor(id: number, avatar: string, name: string, pv: number, pvMax: number, mana: number, manaMax: number, capacities: Capacity[]) {
+        super(id, avatar, name, pv, pvMax, mana, manaMax, capacities);
+    }
+}
+
+export class Tank extends Player {
+    type = "Tank";
+    override isInvincible: number = 0
+    constructor(id: number, avatar: string, name: string, pv: number, pvMax: number, mana: number, manaMax: number, capacities: Capacity[]) {
+        super(id, avatar, name, pv, pvMax, mana, manaMax, capacities);
+    }
+}
+
+export class Rogue extends Player {
+    type = "Rogue";
+    override isInvincible: number = 0
+    constructor(id: number, avatar: string, name: string, pv: number, pvMax: number, mana: number, manaMax: number, capacities: Capacity[]) {
+        super(id, avatar, name, pv, pvMax, mana, manaMax, capacities);
+    }
+}
+
+export class Crapaud extends Player {
+    type = "Crapaud";
+    constructor(id: number, avatar: string, name: string, pv: number, pvMax: number, mana: number, manaMax: number, capacities: Capacity[]) {
+        super(id, avatar, name, pv, pvMax, mana, manaMax, capacities);
+    }
+}

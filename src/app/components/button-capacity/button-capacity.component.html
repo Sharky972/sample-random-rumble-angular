@@ -1,6 +1,17 @@
-<button type="button" style="background: rgb(118, 52, 52);" class="btn {{isDisabled ? 'disabled' : '' }}
-      material-tooltip-main w-100" (click)="onClick()">
-      hit
-      <i class="fas fa-bomb"></i> 5
-      <i class="fas fa-fire-alt"></i> - 5
+<button *ngIf="capacity && capacity.cost && player" type="button"
+      class="p-2 d-flex justify-content-between align-items-center btn {{isDisabled ? 'disabled' : '' }} material-tooltip-main w-100 {{ capacity.btnBootstrapColor }}"
+      (click)="onClick()">
+      <h5 class="m-0 text-start">
+            {{ capacity.name }}
+      </h5>
+      <div>
+            <p class="m-0">
+                  <i class="{{ capacity.faIcon }}"></i>
+                  <span class="mx-1">{{ capacity.damage }}</span>
+            </p>
+            <p class="m-0">
+                  <i class="fas {{ capacity.cost.faIcon }}"></i>
+                  <span class="mx-1">{{ capacity.cost.value }}</span>
+            </p>
+      </div>
 </button>

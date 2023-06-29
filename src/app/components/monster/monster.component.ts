@@ -22,9 +22,17 @@ export class MonsterComponent implements OnInit {
     this.store.select(state => state.game).subscribe((game: GameState) => {
       // Vérifier que le monstre affiche a des pv > game.monster > hitback
       const damage = Math.floor(Math.random() * 10) + 1;
-      let playerId = game.players[Math.floor(Math.random() * game.players.length)].id
-      this.store.dispatch(hitBack({ damage, playerId }));
+      let player = game.players[Math.floor(Math.random() * game.players.length)]
 
+      while ((player.isInvincible == undefined || player.isInvincible > 0) && player.pv > 0) {
+        console.log(game.players[Math.floor(Math.random() * game.players.length)]);
+        player = game.players[Math.floor(Math.random() * game.players.length)]
+      }
+      if (this.monster) {
+        if (this.monster.pv !== game.monster.pv) {
+          this.store.dispatch(hitBack({ damage, playerId: player.id }));
+        }
+      }
 
       this.monster = game.monster;
       // un petit console log pour s'assurer de ce qu'on fait 

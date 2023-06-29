@@ -1,0 +1,109 @@
+
+// Le state initial contiendra nos 4 joueurs
+export const initialPlayers: IPlayer[] = [
+    {
+        id: 1,
+        name: 'Ahri',
+        pv: 100,
+        pvMax: 100,
+        points: 0,
+        attacks: [
+            { name: 'Orb of Deception', damage: 10 },
+            { name: 'Fox-Fire', damage: 20 },
+            { name: 'Charm', damage: 30 },
+            { name: 'Spirit Rush', damage: 40 },
+        ],
+        canAttack: true,
+    },
+    {
+        id: 2,
+        name: 'Alistar',
+        pv: 120,
+        pvMax: 120,
+        points: 0,
+        attacks: [
+            { name: 'Pulverize', damage: 5 },
+            { name: 'Head-Butt', damage: 10 },
+            { name: 'Trample', damage: 15 },
+            { name: 'Unbreakable Will', damage: 20 },
+        ],
+        canAttack: true,
+    },
+    {
+        id: 3,
+        name: 'Maitre Yi',
+        pv: 80,
+        pvMax: 80,
+        points: 0,
+        attacks: [
+            { name: 'Alpha Strike', damage: 15 },
+            { name: 'Meditate', damage: 30 },
+            { name: 'Wuju Style', damage: 45 },
+            { name: 'Highlander', damage: 60 },
+        ],
+
+        canAttack: true,
+    },
+    {
+        id: 4,
+        name: 'Vayne',
+        pv: 150,
+        pvMax: 150,
+        points: 0,
+        attacks: [
+            { name: 'Tumble', damage: 8 },
+            { name: 'Silver Bolts', damage: 16 },
+            { name: 'Condemn', damage: 24 },
+            { name: 'Final Hour', damage: 32 },
+        ],
+        canAttack: true,
+    },
+];
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { GameState } from 'src/app/reducers/game.reducer';
+import { hitMonster } from 'src/app/actions/player.action';
+import { hitBack } from 'src/app/actions/monster.action';
+
+import { IPlayer, Player } from 'src/app/models/player.model';
+
+@Component({
+  selector: 'app-button-capacity',
+  templateUrl: './button-capacity.component.html',
+  styleUrls: ['./button-capacity.component.scss']
+})
+export class ButtonCapacityComponent implements OnInit {
+  @Input() player?: IPlayer;
+  turns?: Array<number>;
+  isDisabled: boolean = false;
+  @Input() skill: any;
+
+  constructor(private store: Store<{ game: GameState }>) {
+
+
+  }
+
+  ngOnInit() {
+
+
+    this.store.select(state => state.game).subscribe((game: GameState) => {
+      this.turns = game.turns;
+      if (this.player) {
+        game.turns.includes(this.player.id) ? this.isDisabled = true : this.isDisabled = false;
+      }
+    });
+  }
+
+  onClick() {
+    if (this.player) {
+      const damage = 10;
+      this.store.dispatch(hitMonster({ damage, playerId: this.player?.id }));
+      console.log('aie !');
+    }
+  }
+}
