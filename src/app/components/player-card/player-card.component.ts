@@ -6,15 +6,45 @@ import { Capacity } from 'src/app/models/Capacity.model';
 
 import { IPlayer } from 'src/app/models/player.model';
 import { GameState } from 'src/app/reducers/game.reducer';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  keyframes,
+  // ...
+} from '@angular/animations';
 
 @Component({
   selector: 'app-player-card',
   templateUrl: './player-card.component.html',
-  styleUrls: ['./player-card.component.scss']
+  styleUrls: ['./player-card.component.scss'],
+  animations: [
+    trigger('attack', [
+      state('open', style({ transform: 'scale(1) translateY(0)' })),
+      state('closed', style({ transform: 'scale(1) translateY(0)' })),
+      transition('open => closed', [
+        animate(300, keyframes([
+          style({ transform: 'scale(1.8) translateY(-50px)' }),
+          style({ transform: 'scale(1.5) translateY(-80px)' }),
+          style({ transform: 'scale(1) translateY(-100px)' })
+        ]))
+      ]),
+      transition('closed => open', [
+        animate(300, keyframes([
+          style({ transform: 'scale(1.8) translateY(-100px)' }),
+          style({ transform: 'scale(1.5) translateY(-80px)' }),
+          style({ transform: 'scale(1) translateY(-50px)' })
+        ]))
+      ])
+    ])
+  ]
 })
 export class PlayerCardComponent {
   @Input() player?: IPlayer;
   capacities: Capacity[] = [];
+  attack = true;
 
   constructor(private store: Store<{ game: GameState }>) {
     this.store.select(state => state.game.capacities).subscribe((capacities) => {
@@ -23,8 +53,9 @@ export class PlayerCardComponent {
   }
 
   capacityClickHandler($event: Capacity): void {
-    console.log($event);
+    this.attack = !this.attack;
     if (this.player) {
+
 
       switch ($event.type) {
         case 'attack':

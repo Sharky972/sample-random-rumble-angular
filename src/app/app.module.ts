@@ -12,6 +12,7 @@ import { PlayerListComponent } from './components/player-list/player-list.compon
 import { PlayerCardComponent } from './components/player-card/player-card.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { ButtonCapacityComponent } from './components/button-capacity/button-capacity.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { ButtonCapacityComponent } from './components/button-capacity/button-cap
     AppRoutingModule,
     StoreModule.forRoot({ game: gameReducer }),
     EffectsModule.forRoot([]),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

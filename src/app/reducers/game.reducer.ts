@@ -56,7 +56,7 @@ export const gameReducer = createReducer(
                 return player
             })
         }
-        console.log('resetTurn', newState);
+
         return newState
 
     }),
@@ -75,8 +75,7 @@ export const gameReducer = createReducer(
             })
         };
 
-        // Log the new state to the console for debugging purposes
-        console.log('Monster hitback Action Reducer ', newState);
+
 
         // Return the new state
         return newState;

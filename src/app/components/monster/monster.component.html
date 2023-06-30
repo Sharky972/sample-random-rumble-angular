@@ -1,4 +1,4 @@
-<section>
+<section class="forest">
   <div class="container">
     <div class="row">
       <div class="card-monster col-sm-12">
@@ -7,7 +7,8 @@
             <div class="row">
               <div class="col">
                 <span class="badge badge-danger ml-2" id="degatSpanMonster"></span>
-                <img class="img-fluid" src="assets/images/baron.jpg" width="600px" alt="monster" />
+                <img class="img-fluid" [@openClose]="isOpen ? 'open' : 'closed'" src="assets/images/nashorgif.gif"
+                  width="400px" alt="monster" />
               </div>
             </div>
           </div>

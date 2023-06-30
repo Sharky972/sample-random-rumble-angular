@@ -12,14 +12,14 @@ export class PlayerService {
   createPlayer(type: string): IPlayer {
     switch (type) {
       case "Warrior":
-        return new Warrior(1, "/assets/images/Yigif.gif", "Master Yi", 0, 100, 30, 30, [
+        return new Warrior(1, "/assets/images/Yigif.gif", "Master Yi", 100, 100, 30, 30, [
           { id: 9, name: "Alpha Strike", color: "green", cost: { name: "mana", value: 10, faIcon: "fa-solid fa-fire-alt" }, damage: 30, type: "attack", btnBootstrapColor: "btn-success", faIcon: "fa-solid fa-fist-raised" },
           { id: 10, name: "Meditate", color: "green", cost: { name: "mana", value: 20, faIcon: "fa-solid fa-fire-alt" }, damage: 20, type: "heal", btnBootstrapColor: "btn-success", faIcon: "fa-solid fa-briefcase-medical " },
           { id: 11, name: "Wuju Style", color: "green", cost: { name: "mana", value: 10, faIcon: "fa-solid fa-fire-alt" }, damage: 20, type: "attack", btnBootstrapColor: "btn-success", faIcon: "fa-solid fa-fist-raised" },
           { id: 12, name: "Highlander", color: "green", cost: { name: "mana", value: 40, faIcon: "fa-solid fa-fire-alt" }, damage: 100, type: "attack", btnBootstrapColor: "btn-success", faIcon: "fa-solid fa-shield " },
         ]);
       case "Mage":
-        return new Mage(2, "/assets/images/ahrigif.gif", "Ahri", 0, 100, 30, 30, [
+        return new Mage(2, "/assets/images/ahrigif.gif", "Ahri", 100, 100, 30, 30, [
           { id: 1, name: "Orb of Deception", color: "blue", btnBootstrapColor: "btn-info", cost: { name: "mana", value: 10, faIcon: "fa-solid fa-fire-alt" }, damage: 20, type: "attack", faIcon: "fa-solid fa-wand-sparkles " },
           { id: 2, name: "Fox-Fire", color: "blue", btnBootstrapColor: "btn-info", cost: { name: "mana", value: 20, faIcon: "fa-solid fa-fire-alt" }, damage: 15, type: "attack", faIcon: "fa-solid fa-wand-sparkles " },
           { id: 3, name: "Charm", color: "pink", cost: { name: "mana", value: 10, faIcon: "fa-solid fa-fire-alt" }, damage: 10, type: "attack", btnBootstrapColor: "btn-danger", faIcon: "fa-solid fa-wand-sparkles " },
@@ -41,7 +41,7 @@ export class PlayerService {
 
         ]);
       case "Rogue":
-        return new Rogue(5, "/assets/images/kindredgif.gif", "Kindred", 0, 100, 30, 30, [
+        return new Rogue(5, "/assets/images/kindredgif.gif", "Kindred", 100, 100, 30, 30, [
           { id: 13, name: "Dance of Arrows", color: "purple", cost: { name: "mana", value: 10, faIcon: "fa-solid fa-fire-alt" }, damage: 20, type: "attack", btnBootstrapColor: "btn-warning", faIcon: "fa-solid fa-angles-right " },
           { id: 14, name: "Wolf's Frenzy", color: "purple", cost: { name: "mana", value: 10, faIcon: "fa-solid fa-fire-alt" }, damage: 30, type: "attack", btnBootstrapColor: "btn-warning", faIcon: "fa-brands fa-wolf-pack-battalion " },
           { id: 15, name: "Mounting Dread", color: "purple", cost: { name: "mana", value: 10, faIcon: "fa-solid fa-fire-alt" }, damage: 10, type: "attack", btnBootstrapColor: "btn-warning", faIcon: "fa-solid fa-angles-right " },

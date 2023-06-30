@@ -1,4 +1,4 @@
-.progress{
+.progress {
   position: relative;
   height: 25px;
 }
@@ -12,14 +12,21 @@
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #007bff;
-  transition: width .6s ease;
+
+  transition: width 0.6s ease;
   height: 100%;
 }
-.progress-info{
+.progress-info {
   position: absolute;
-  color: white;
+  color: #fff;
+
   left: 5px;
   z-index: 10;
   font-size: 1rem;
+}
+.blue {
+  background: #1874da;
+}
+.green {
+  background: #01a407;
 }

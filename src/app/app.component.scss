@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: #232323;
+
   min-height: 100vh;
 }
 
@@ -76,8 +77,6 @@ body {
   font-size: 30;
 }
 
-
-
 /*
 -----------------------------
 Animation degats
@@ -113,20 +112,20 @@ Animation degats
 
 @keyframes animationAffichageDesDegats {
   1% {
-    transform: translate(-23px, 7px) rotate(1deg) scaleX(1.00) scaleY(1.00);
+    transform: translate(-23px, 7px) rotate(1deg) scaleX(1) scaleY(1);
   }
 
   12% {
-    transform: translate(-23px, 13px) rotate(-8deg) scaleX(3.00) scaleY(3.00);
+    transform: translate(-23px, 13px) rotate(-8deg) scaleX(3) scaleY(3);
   }
 
   18% {
-    transform: translate(-23px, -7px) rotate(-12deg) scaleX(5.00) scaleY(5.00);
+    transform: translate(-23px, -7px) rotate(-12deg) scaleX(5) scaleY(5);
   }
 
   29% {
     opacity: 0.81;
-    transform: translate(-23px, -54px) rotate(-20deg) scaleX(1.50) scaleY(1.50);
+    transform: translate(-23px, -54px) rotate(-20deg) scaleX(1.5) scaleY(1.5);
   }
 
   73% {
@@ -141,26 +140,26 @@ Animation degats
 
   101% {
     opacity: 0;
-    transform: translate(-23px, -200px) rotate(-60deg) scaleX(1.50) scaleY(1.50);
+    transform: translate(-23px, -200px) rotate(-60deg) scaleX(1.5) scaleY(1.5);
   }
 }
 
 @-moz-keyframes animationAffichageDesDegats {
   1% {
-    -moz-transform: translate(-23px, 7px) rotate(1deg) scaleX(1.00) scaleY(1.00);
+    -moz-transform: translate(-23px, 7px) rotate(1deg) scaleX(1) scaleY(1);
   }
 
   12% {
-    -moz-transform: translate(-23px, 13px) rotate(-8deg) scaleX(3.00) scaleY(3.00);
+    -moz-transform: translate(-23px, 13px) rotate(-8deg) scaleX(3) scaleY(3);
   }
 
   18% {
-    -moz-transform: translate(-23px, -7px) rotate(-12deg) scaleX(5.00) scaleY(5.00);
+    -moz-transform: translate(-23px, -7px) rotate(-12deg) scaleX(5) scaleY(5);
   }
 
   29% {
     opacity: 0.81;
-    -moz-transform: translate(-23px, -54px) rotate(-20deg) scaleX(1.50) scaleY(1.50);
+    -moz-transform: translate(-23px, -54px) rotate(-20deg) scaleX(1.5) scaleY(1.5);
   }
 
   73% {
@@ -175,26 +174,26 @@ Animation degats
 
   101% {
     opacity: 0;
-    -moz-transform: translate(-23px, -200px) rotate(-60deg) scaleX(1.50) scaleY(1.50);
+    -moz-transform: translate(-23px, -200px) rotate(-60deg) scaleX(1.5) scaleY(1.5);
   }
 }
 
 @-webkit-keyframes animationAffichageDesDegats {
   1% {
-    -webkit-transform: translate(-23px, 7px) rotate(1deg) scaleX(1.00) scaleY(1.00);
+    -webkit-transform: translate(-23px, 7px) rotate(1deg) scaleX(1) scaleY(1);
   }
 
   12% {
-    -webkit-transform: translate(-23px, 13px) rotate(-8deg) scaleX(3.00) scaleY(3.00);
+    -webkit-transform: translate(-23px, 13px) rotate(-8deg) scaleX(3) scaleY(3);
   }
 
   18% {
-    -webkit-transform: translate(-23px, -7px) rotate(-12deg) scaleX(5.00) scaleY(5.00);
+    -webkit-transform: translate(-23px, -7px) rotate(-12deg) scaleX(5) scaleY(5);
   }
 
   29% {
     opacity: 0.81;
-    -webkit-transform: translate(-23px, -54px) rotate(-20deg) scaleX(1.50) scaleY(1.50);
+    -webkit-transform: translate(-23px, -54px) rotate(-20deg) scaleX(1.5) scaleY(1.5);
   }
 
   73% {
@@ -209,26 +208,26 @@ Animation degats
 
   101% {
     opacity: 0;
-    -webkit-transform: translate(-23px, -200px) rotate(-60deg) scaleX(1.50) scaleY(1.50);
+    -webkit-transform: translate(-23px, -200px) rotate(-60deg) scaleX(1.5) scaleY(1.5);
   }
 }
 
 @-o-keyframes animationAffichageDesDegats {
   1% {
-    -o-transform: translate(-23px, 7px) rotate(1deg) scaleX(1.00) scaleY(1.00);
+    -o-transform: translate(-23px, 7px) rotate(1deg) scaleX(1) scaleY(1);
   }
 
   12% {
-    -o-transform: translate(-23px, 13px) rotate(-8deg) scaleX(3.00) scaleY(3.00);
+    -o-transform: translate(-23px, 13px) rotate(-8deg) scaleX(3) scaleY(3);
   }
 
   18% {
-    -o-transform: translate(-23px, -7px) rotate(-12deg) scaleX(5.00) scaleY(5.00);
+    -o-transform: translate(-23px, -7px) rotate(-12deg) scaleX(5) scaleY(5);
   }
 
   29% {
     opacity: 0.81;
-    -o-transform: translate(-23px, -54px) rotate(-20deg) scaleX(1.50) scaleY(1.50);
+    -o-transform: translate(-23px, -54px) rotate(-20deg) scaleX(1.5) scaleY(1.5);
   }
 
   73% {
@@ -243,26 +242,26 @@ Animation degats
 
   101% {
     opacity: 0;
-    -o-transform: translate(-23px, -200px) rotate(-60deg) scaleX(1.50) scaleY(1.50);
+    -o-transform: translate(-23px, -200px) rotate(-60deg) scaleX(1.5) scaleY(1.5);
   }
 }
 
 @-ms-keyframes animationAffichageDesDegats {
   1% {
-    -ms-transform: translate(-23px, 7px) rotate(1deg) scaleX(1.00) scaleY(1.00);
+    -ms-transform: translate(-23px, 7px) rotate(1deg) scaleX(1) scaleY(1);
   }
 
   12% {
-    -ms-transform: translate(-23px, 13px) rotate(-8deg) scaleX(3.00) scaleY(3.00);
+    -ms-transform: translate(-23px, 13px) rotate(-8deg) scaleX(3) scaleY(3);
   }
 
   18% {
-    -ms-transform: translate(-23px, -7px) rotate(-12deg) scaleX(5.00) scaleY(5.00);
+    -ms-transform: translate(-23px, -7px) rotate(-12deg) scaleX(5) scaleY(5);
   }
 
   29% {
     opacity: 0.81;
-    -ms-transform: translate(-23px, -54px) rotate(-20deg) scaleX(1.50) scaleY(1.50);
+    -ms-transform: translate(-23px, -54px) rotate(-20deg) scaleX(1.5) scaleY(1.5);
   }
 
   73% {
@@ -277,7 +276,7 @@ Animation degats
 
   101% {
     opacity: 0;
-    -ms-transform: translate(-23px, -200px) rotate(-60deg) scaleX(1.50) scaleY(1.50);
+    -ms-transform: translate(-23px, -200px) rotate(-60deg) scaleX(1.5) scaleY(1.5);
   }
 }
 
@@ -286,10 +285,6 @@ Animation degats
 fin animation degats
 --------------------------
 */
-
-
-
-
 
 /*
 -------------------------
@@ -312,7 +307,6 @@ animationDegatsCard
 * ----------------------------------------
 */
 @-webkit-keyframes shake-bottom {
-
   0%,
   100% {
     -webkit-transform: rotate(0deg);
@@ -352,7 +346,6 @@ animationDegatsCard
 }
 
 @keyframes shake-bottom {
-
   0%,
   100% {
     -webkit-transform: rotate(0deg);
@@ -397,8 +390,6 @@ Fin animationDegatsCard
 -------------------------
 */
 
-
-
 /*
 ------------------
 animationHeal
@@ -409,56 +400,52 @@ animationHeal
   background: linear-gradient(175deg, #67db67, #ffffff, #67db67, #ffffff, #67db67, #e0ffe0);
   background-size: 1200% 1200%;
 
-
   -webkit-animation: AnimationHeal 1s ease 1;
   -moz-animation: AnimationHeal 1s ease 1;
   animation: AnimationHeal 1s ease 1;
 }
 
-
-
 @-webkit-keyframes AnimationHeal {
   0% {
-    background-position: 47% 0%
+    background-position: 47% 0%;
   }
 
   50% {
-    background-position: 54% 100%
+    background-position: 54% 100%;
   }
 
   100% {
-    background-position: 47% 0%
+    background-position: 47% 0%;
   }
 }
 
 @-moz-keyframes AnimationHeal {
   0% {
-    background-position: 47% 0%
+    background-position: 47% 0%;
   }
 
   50% {
-    background-position: 54% 100%
+    background-position: 54% 100%;
   }
 
   100% {
-    background-position: 47% 0%
+    background-position: 47% 0%;
   }
 }
 
 @keyframes AnimationHeal {
   0% {
-    background-position: 47% 0%
+    background-position: 47% 0%;
   }
 
   50% {
-    background-position: 54% 100%
+    background-position: 54% 100%;
   }
 
   100% {
-    background-position: 47% 0%
+    background-position: 47% 0%;
   }
 }
-
 
 .card-monstre {
   margin-top: 10px;
@@ -525,7 +512,6 @@ animationHeal
   padding: 50px;
   display: block;
 }
-
 
 .bg-danger {
   background-color: #ff3547 !important;
