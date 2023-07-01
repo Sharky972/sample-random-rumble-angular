@@ -1,6 +1,7 @@
 <button *ngIf="capacity && capacity.cost && player" type="button"
       class="p-2 d-flex justify-content-between align-items-center btn {{isDisabled ? 'disabled' : '' }} material-tooltip-main w-100 {{ capacity.btnBootstrapColor }}"
-      (click)="onClick()">
+      (click)="onClick()" matTooltip="basic Attacks deal 10 damage" matTooltipPosition="above"
+      matTooltipClass="my-custom-tooltip" matTooltipShowDelay="500" matTooltipHideDelay="200">
       <h5 class="m-0 text-start">
             {{ capacity.name }}
       </h5>

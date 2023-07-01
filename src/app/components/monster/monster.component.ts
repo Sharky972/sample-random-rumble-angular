@@ -50,7 +50,7 @@ export class MonsterComponent implements OnInit {
   ngOnInit(): void {
     this.store.select(state => state.game).subscribe((game: GameState) => {
       // Vérifier que le monstre affiche a des pv > game.monster > hitback
-      const damage = Math.floor(Math.random() * 10) + 1;
+      const damage = Math.floor(Math.random() * 20) + 1;
       let player = game.players[Math.floor(Math.random() * game.players.length)]
 
       while ((player.isInvincible == undefined || player.isInvincible > 0) && player.pv > 0) {
