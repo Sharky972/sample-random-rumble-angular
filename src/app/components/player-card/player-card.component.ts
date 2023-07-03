@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { hitBack } from 'src/app/actions/monster.action';
-import { applyInvincibility, healPlayer, hitMonster } from 'src/app/actions/player.action';
+import { applyInvincibility, healPlayer, hitMonster, healTeam } from 'src/app/actions/player.action';
 import { Capacity } from 'src/app/models/Capacity.model';
 
 import { IPlayer } from 'src/app/models/player.model';
@@ -75,6 +75,11 @@ export class PlayerCardComponent {
           this.store.dispatch(
             applyInvincibility({ playerId: this.player?.id, duration: $event.damage, cost: $event.cost })
           )
+          break;
+        case 'healTeam':
+          this.store.dispatch(
+            healTeam({ heal: $event.damage, cost: $event.cost, playerId: this.player?.id })
+          );
           break;
       }
     }

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { hitMonster } from 'src/app/actions/player.action';
 import { Capacity } from 'src/app/models/Capacity.model';
@@ -9,7 +9,8 @@ import { GameState } from 'src/app/reducers/game.reducer';
 @Component({
   selector: 'app-button-capacity',
   templateUrl: './button-capacity.component.html',
-  styleUrls: ['./button-capacity.component.scss']
+  styleUrls: ['./button-capacity.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ButtonCapacityComponent {
   @Input() capacity?: Capacity;
@@ -18,6 +19,7 @@ export class ButtonCapacityComponent {
   enabledCapacity: boolean = true;
   turns?: Array<number>;
   isDisabled: boolean = false;
+
   constructor(private store: Store<{ game: GameState }>) {
   }
 
@@ -46,4 +48,5 @@ export class ButtonCapacityComponent {
       );
     }
   }
+
 }

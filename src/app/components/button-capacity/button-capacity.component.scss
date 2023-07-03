@@ -1,0 +1,27 @@
+.bouton {
+    background-color: #065456;
+    color: #bcad68;
+    border-color: #bcad68;
+}
+
+.tooltip-trigger {
+    position: relative;
+    cursor: pointer;
+    /* Add any other desired styles */
+}
+
+.tooltip-trigger:hover::after {
+    content: attr(data-tooltip); /* Display the tooltip text */
+    position: absolute;
+    z-index: 99;
+    bottom: 100%; /* Position the tooltip above the trigger element */
+    left: 50%; /* Adjust the left position as needed */
+    transform: translateX(-50%);
+    background-color: #bcad68; /* Customize the background color */
+    color: #065456; /* Customize the text color */
+    padding: 8px; /* Add padding to the tooltip */
+    border-radius: 4px;
+    width: 20vw;
+    font-size: 18px; /* Customize the tooltip font size */
+    /* Add any other desired styles */
+}

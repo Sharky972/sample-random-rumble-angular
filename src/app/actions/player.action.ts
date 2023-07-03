@@ -13,6 +13,10 @@ export const resetTurn = createAction('[Player] Reset Turn')
 
 export const healPlayer = createAction('[Player] Heal', props<{ playerId: number, heal: number, cost: Cost }>());
 
+export const healTeam = createAction(
+    '[Player] Heal All Players',
+    props<{ heal: number; cost: Cost; playerId: number }>()
+);
 export const initPlayers = createAction('[Player] Init Players', props<{ players: IPlayer[] }>());
 
 export const applyInvincibility = createAction(

@@ -2,10 +2,10 @@
 import { createReducer, createSelector, on } from '@ngrx/store';
 import { IMonster, initialMonster } from './../models/monster.model';
 import { IPlayer, initialPlayers } from './../models/player.model';
-import { applyInvincibility, healPlayer, hitMonster, initPlayers, resetTurn } from './../actions/player.action';
+import { applyInvincibility, healPlayer, hitMonster, initPlayers, resetTurn, healTeam } from './../actions/player.action';
 import { hitBack } from '../actions/monster.action';
 import { Capacity, initialCapacities } from '../models/Capacity.model';
-import { interval, mapTo, take, timer } from 'rxjs';
+
 
 
 
@@ -103,5 +103,21 @@ export const gameReducer = createReducer(
             turns: state.turns.concat([playerId])
         }
     }),
+
+    on(healTeam, (state, { heal }) => {
+        const updatedPlayers = state.players.map(player => ({
+            ...player,
+            pv: player.pv + heal
+        }));
+
+        return {
+            ...state,
+            players: updatedPlayers,
+            turns: state.turns.filter(playerId => {
+                const affectedPlayer = updatedPlayers.find(player => player.id === playerId);
+                return !affectedPlayer || affectedPlayer.pv > 0;
+            })
+        };
+    })
 
 )
