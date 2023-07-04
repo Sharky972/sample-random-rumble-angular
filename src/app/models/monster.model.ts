@@ -3,6 +3,7 @@ export interface IMonster {
     name: string;
     pvMax: number,
     pv: number,
+    stunnedMonsterDuration: number | undefined;
 }
 
 export const initialMonster: IMonster = {
@@ -10,4 +11,5 @@ export const initialMonster: IMonster = {
     name: 'Baron Nashor',
     pvMax: 800,
     pv: 800,
+    stunnedMonsterDuration: 0,
 };

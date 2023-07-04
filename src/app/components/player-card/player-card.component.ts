@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { hitBack } from 'src/app/actions/monster.action';
-import { applyInvincibility, healPlayer, hitMonster, healTeam } from 'src/app/actions/player.action';
+import { applyInvincibility, healPlayer, hitMonster, healTeam, reducePlayerMana, StunMonster } from 'src/app/actions/player.action';
 import { Capacity } from 'src/app/models/Capacity.model';
 
 import { IPlayer } from 'src/app/models/player.model';
@@ -65,20 +65,41 @@ export class PlayerCardComponent {
           this.store.dispatch(
             hitMonster({ playerId: this.player?.id, damage: $event.damage, cost: $event.cost })
           )
+          this.store.dispatch(
+            reducePlayerMana({ playerId: this.player?.id, cost: $event.cost })
+          )
           break;
         case 'heal':
           this.store.dispatch(
             healPlayer({ playerId: this.player?.id, heal: $event.damage, cost: $event.cost })
+          )
+          this.store.dispatch(
+            reducePlayerMana({ playerId: this.player?.id, cost: $event.cost })
           )
           break;
         case 'invincibility':
           this.store.dispatch(
             applyInvincibility({ playerId: this.player?.id, duration: $event.damage, cost: $event.cost })
           )
+          this.store.dispatch(
+            reducePlayerMana({ playerId: this.player?.id, cost: $event.cost })
+          )
           break;
         case 'healTeam':
           this.store.dispatch(
             healTeam({ heal: $event.damage, cost: $event.cost, playerId: this.player?.id })
+          )
+          this.store.dispatch(
+            reducePlayerMana({ playerId: this.player?.id, cost: $event.cost })
+          );
+          break;
+        case 'stun':
+          this.store.dispatch(
+            StunMonster({ duration: $event.damage, damage: $event.damage, cost: $event.cost, playerId: this.player?.id })
+          )
+
+          this.store.dispatch(
+            reducePlayerMana({ playerId: this.player?.id, cost: $event.cost })
           );
           break;
       }

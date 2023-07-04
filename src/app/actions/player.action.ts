@@ -23,3 +23,7 @@ export const applyInvincibility = createAction(
     '[Player] Apply Invincibility',
     props<{ playerId: number, duration: number, cost: Cost }>()
 );
+
+export const reducePlayerMana = createAction('[Player] Reduce Player Mana', props<{ playerId: number, cost: Cost }>());
+
+export const StunMonster = createAction('[Player] Stun Monster', props<{ damage: number, duration: number, playerId: number, cost: Cost }>());

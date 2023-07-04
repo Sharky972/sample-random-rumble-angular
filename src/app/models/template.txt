@@ -107,3 +107,26 @@ export class ButtonCapacityComponent implements OnInit {
     }
   }
 }
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ on(StunMonster, (state, { damage, duration, playerId }) => {
+    const updatedPlayers = state.map(player => ({
+      ...player,
+      isStunned: player.id === playerId ? true : player.isStunned
+    }));
+
+    setTimeout(() => {
+      const unstunnedPlayers = state.map(player => ({
+        ...player,
+        isStunned: player.id === playerId ? false : player.isStunned
+      }));
+
+      playerAdapter.setAll(unstunnedPlayers, state);
+    }, duration);
+
+    return playerAdapter.setAll(updatedPlayers, state);
+  })
+);

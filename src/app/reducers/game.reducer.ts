@@ -2,7 +2,7 @@
 import { createReducer, createSelector, on } from '@ngrx/store';
 import { IMonster, initialMonster } from './../models/monster.model';
 import { IPlayer, initialPlayers } from './../models/player.model';
-import { applyInvincibility, healPlayer, hitMonster, initPlayers, resetTurn, healTeam } from './../actions/player.action';
+import { applyInvincibility, healPlayer, hitMonster, initPlayers, resetTurn, healTeam, reducePlayerMana, StunMonster } from './../actions/player.action';
 import { hitBack } from '../actions/monster.action';
 import { Capacity, initialCapacities } from '../models/Capacity.model';
 
@@ -15,6 +15,7 @@ export interface GameState {
     turns: Array<number>;
     capacities: Capacity[];
     invinciblePlayers: Set<number>; // Array to track invincible player IDs
+    stunnedMonsterDuration: number;
 }
 
 export const initialState: GameState = {
@@ -23,6 +24,7 @@ export const initialState: GameState = {
     turns: [],
     capacities: initialCapacities,
     invinciblePlayers: new Set<number>(), // Initialize invinciblePlayers as an empty array
+    stunnedMonsterDuration: 0,
 };
 
 export const gameReducer = createReducer(
@@ -61,24 +63,25 @@ export const gameReducer = createReducer(
 
     }),
     on(hitBack, (state, { damage, playerId }) => {
-        let newState = state;
+        // Check if the monster is stunned before allowing the hit back
+        if (state.stunnedMonsterDuration > 0) {
+            return state; // Monster is stunned, so it cannot hit back
+        }
 
-        // Check if the player is not invincible before reducing their hit points
-        newState = {
+        const updatedPlayers = state.players.map(player => {
+            if (player.id === playerId) {
+                return {
+                    ...player,
+                    pv: player.pv - damage
+                };
+            }
+            return player;
+        });
+
+        return {
             ...state,
-            players: state.players.map((player, index) => {
-                if (player.id === playerId) {
-                    return { ...state.players[index], pv: state.players[index].pv - damage };
-                } else {
-                    return player;
-                }
-            })
+            players: updatedPlayers
         };
-
-
-
-        // Return the new state
-        return newState;
     }),
     on(healPlayer, (state, { playerId, heal }) => ({
         ...state,
@@ -103,6 +106,30 @@ export const gameReducer = createReducer(
             turns: state.turns.concat([playerId])
         }
     }),
+    on(StunMonster, (state, { duration, damage, playerId }) => {
+        // Update the stunnedMonsterDuration with the provided duration
+        return {
+            ...state,
+
+            monster: {
+                ...state.monster,
+                pv: state.monster.pv - damage
+            },
+            players: state.players.map(player => {
+                if (player.id === playerId) {
+                    return {
+                        ...player,
+                        stunnedMonsterDuration: duration,
+                    }
+                }
+                return player
+            }),
+            turns: state.turns.concat([playerId])
+        };
+
+
+    }),
+
 
     on(healTeam, (state, { heal }) => {
         const updatedPlayers = state.players.map(player => ({
@@ -118,6 +145,26 @@ export const gameReducer = createReducer(
                 return !affectedPlayer || affectedPlayer.pv > 0;
             })
         };
-    })
+    }),
+    on(reducePlayerMana, (state, { playerId, cost }) => {
+        const updatedPlayers = state.players.map(player => {
+            if (player.id === playerId) {
+                return {
+                    ...player,
+                    mana: player.mana - cost.value,
+                };
+            }
+            return player;
+        });
+        return {
+            ...state,
+            players: updatedPlayers,
+        };
+    }),
+
 
 )
+export const isMonsterStunned: (state: GameState) => boolean = createSelector(
+    (state: GameState) => state.stunnedMonsterDuration,
+    stunnedMonsterDuration => stunnedMonsterDuration > 0
+);
