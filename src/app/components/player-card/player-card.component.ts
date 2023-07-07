@@ -47,6 +47,7 @@ export class PlayerCardComponent {
   capacities: Capacity[] = [];
   attack = true;
   deadPlayers: any[] = [];
+  playerCount = 4; // Set to the total number of players in your game
 
   constructor(private store: Store<{ game: GameState }>) {
     this.store.select(state => state.game.capacities).subscribe((capacities) => {
@@ -67,8 +68,15 @@ export class PlayerCardComponent {
     });
   }
 
+
   get isPlayerDead(): boolean {
     return !!this.player && !!this.player.pv && this.player.pv <= 0;
+  }
+  isAnyPlayerAlive(): boolean {
+    return !!this.player && !!this.player.pv && this.player.pv > 0;
+  }
+  allPlayersAlive(): boolean {
+    return this.deadPlayers.length === this.playerCount;
   }
 
 

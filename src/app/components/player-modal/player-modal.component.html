@@ -3,17 +3,18 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="defeatedModalLabel">Monster Defeated!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="defeatedModalLabel">Death screen</h5>
+                <button type="button" (click)="reloadPage()" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>The monster has been defeated.</p>
-                <img src="/assets/images/death/nashdeathgif.gif" alt="nash death">
+                <p>.</p>
+                <img src="/assets/images/death/deathgif.gif" alt="you died">
+                <img style="width: 70%;" src="/assets/images/death/defaite.png" alt="you died">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="reloadPage()" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

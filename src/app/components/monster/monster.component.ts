@@ -45,6 +45,9 @@ export class MonsterComponent implements OnInit {
   isOpen = true;
   deadMonster = false;
   isStunned = false;
+  reloadPage(): void {
+    window.location.reload();
+  }
   // Récupérons le store grace a l'injection de dépendance
   constructor(private store: Store<{ game: GameState }>) {
   }
@@ -64,9 +67,10 @@ export class MonsterComponent implements OnInit {
       this.deadMonster = deadMonster;
     });
 
+
     this.store.select(state => state.game).subscribe((game: GameState) => {
       // Vérifier que le monstre affiche a des pv > game.monster > hitback
-      const damage = Math.floor(Math.random() * 20) + 1;
+      const damage = Math.floor(Math.random() * 90) + 1;
       let playersCanAttack = game.players.filter((player: IPlayer) => {
         if (player.pv && !player.isInvincible) {
           return player
@@ -82,10 +86,7 @@ export class MonsterComponent implements OnInit {
       } else {
         this.isStunned = false; // Set isStunned to false otherwise
       }
-      // while (game.monster.stunnedMonsterDuration > 0) {
-      //   this.isStunned = true;
 
-      // }
 
 
       if (this.monster && player) {

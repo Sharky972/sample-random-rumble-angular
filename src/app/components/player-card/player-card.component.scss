@@ -18,5 +18,23 @@
 .dead-card {
     filter: grayscale(90%);
 }
+::ng-deep .modal-content {
+    background-color: #1a3435;
+    border-color: #bcad68;
+    border-width: 2px;
+    color: #bcad68;
+}
+
+::ng-deep .modal-header {
+    background-color: #1a3435;
+    border-color: #bcad68;
+    color: #bcad68;
+}
+
+::ng-deep .modal-footer {
+    background-color: #1a3435;
+    border-color: #bcad68;
+    color: #bcad68;
+}
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

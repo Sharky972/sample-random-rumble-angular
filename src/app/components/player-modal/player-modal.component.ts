@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./player-modal.component.scss']
 })
 export class PlayerModalComponent {
-
+  reloadPage(): void {
+    window.location.reload();
+  }
 }

@@ -14,3 +14,7 @@
     </div>
   </div>
 </div>
+<div *ngIf="player && allPlayersAlive()" class="modal fade show" id="defeatedModal" tabindex="-1" role="dialog"
+  aria-labelledby="defeatedModalLabel" aria-hidden="true" style="display: block;">
+  <app-player-modal></app-player-modal>
+</div>
