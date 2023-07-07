@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { PlayerModalComponent } from './components/player-modal/player-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     PlayerListComponent,
     PlayerCardComponent,
     ProgressBarComponent,
-    ButtonCapacityComponent
+    ButtonCapacityComponent,
+    PlayerModalComponent,
   ],
   imports: [
     BrowserModule,

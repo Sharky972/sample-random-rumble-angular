@@ -4,3 +4,55 @@
     background-size: cover;
     background-position: bottom;
 }
+.dead-monster {
+    filter: grayscale(90%);
+}
+
+::ng-deep .modal-content {
+    background-color: #1a3435;
+    border-color: #bcad68;
+    border-width: 2px;
+    color: #bcad68;
+}
+
+::ng-deep .modal-header {
+    background-color: #1a3435;
+    border-color: #bcad68;
+    color: #bcad68;
+}
+
+::ng-deep .modal-footer {
+    background-color: #1a3435;
+    border-color: #bcad68;
+    color: #bcad68;
+}
+
+.stunned {
+    animation-name: stunned;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes stunned {
+    0% {
+        transform: rotate(0deg);
+        filter: sepia(50%);
+    }
+    25% {
+        transform: rotate(-10deg);
+        filter: sepia(100%);
+    }
+    50% {
+        transform: rotate(0deg);
+        filter: sepia(50%);
+    }
+    75% {
+        transform: rotate(10deg);
+        filter: sepia(100%);
+    }
+    100% {
+        transform: rotate(0deg);
+        filter: sepia(50%);
+    }
+}

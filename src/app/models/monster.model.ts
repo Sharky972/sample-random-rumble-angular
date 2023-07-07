@@ -3,7 +3,7 @@ export interface IMonster {
     name: string;
     pvMax: number,
     pv: number,
-    stunnedMonsterDuration: number | undefined;
+    stunnedMonsterDuration: number;
 }
 
 export const initialMonster: IMonster = {

@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { hitBack } from 'src/app/actions/monster.action';
-import { applyInvincibility, healPlayer, hitMonster, healTeam, reducePlayerMana, StunMonster } from 'src/app/actions/player.action';
+import { applyInvincibility, healPlayer, hitMonster, healTeam, reducePlayerMana, StunMonster, dead } from 'src/app/actions/player.action';
 import { Capacity } from 'src/app/models/Capacity.model';
 
 import { IPlayer } from 'src/app/models/player.model';
 import { GameState } from 'src/app/reducers/game.reducer';
+import { map } from 'rxjs';
 import {
   trigger,
   state,
@@ -45,12 +46,31 @@ export class PlayerCardComponent {
   @Input() player?: IPlayer;
   capacities: Capacity[] = [];
   attack = true;
+  deadPlayers: any[] = [];
 
   constructor(private store: Store<{ game: GameState }>) {
     this.store.select(state => state.game.capacities).subscribe((capacities) => {
       this.capacities = capacities;
     });
   }
+  ngOnInit(): void {
+    if (this.player && this.player.pv && this.player.pv <= 0) {
+      this.store.dispatch(dead({ playerId: this.player.id }));
+    }
+    this.store.pipe(
+      select('game'),
+      map((gameState: GameState) => {
+        return gameState.deadPlayers;
+      })
+    ).subscribe((deadPlayers) => {
+      this.deadPlayers = deadPlayers;
+    });
+  }
+
+  get isPlayerDead(): boolean {
+    return !!this.player && !!this.player.pv && this.player.pv <= 0;
+  }
+
 
   capacityClickHandler($event: Capacity): void {
     this.attack = !this.attack;

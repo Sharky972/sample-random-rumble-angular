@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { IMonster } from 'src/app/models/monster.model';
 import { GameState } from 'src/app/reducers/game.reducer';
-import { hitBack } from 'src/app/actions/monster.action';
+import { hitBack, monsterdead } from 'src/app/actions/monster.action';
+import { map } from 'rxjs';
 import {
   trigger,
   state,
@@ -12,6 +13,7 @@ import {
   keyframes,
   // ...
 } from '@angular/animations';
+import { IPlayer } from 'src/app/models/player.model';
 @Component({
   selector: 'app-monster',
   templateUrl: './monster.component.html',
@@ -34,13 +36,15 @@ import {
           style({ filter: 'brightness(1000%)', transform: 'translateX(10px)' })
         ]))
       ])
-    ])
+    ]),
   ]
 })
 
 export class MonsterComponent implements OnInit {
   monster?: IMonster;
   isOpen = true;
+  deadMonster = false;
+  isStunned = false;
   // Récupérons le store grace a l'injection de dépendance
   constructor(private store: Store<{ game: GameState }>) {
   }
@@ -48,17 +52,44 @@ export class MonsterComponent implements OnInit {
   // Lorsque le composant est initialisé la méthode ngOnInit se lance et initialise la propriété monster de notre composant
   //Ici nous récupérons le state Monster pour initialiser la propriété Monster de notre composants ce qui nous permet de l'utiliser dans monster.component.html
   ngOnInit(): void {
+    if (this.monster && this.monster.pv && this.monster.pv <= 0) {
+      this.store.dispatch(monsterdead());
+    }
+    this.store.pipe(
+      select('game'),
+      map((gameState: GameState) => {
+        return gameState.deadMonster;
+      })
+    ).subscribe((deadMonster) => {
+      this.deadMonster = deadMonster;
+    });
+
     this.store.select(state => state.game).subscribe((game: GameState) => {
       // Vérifier que le monstre affiche a des pv > game.monster > hitback
       const damage = Math.floor(Math.random() * 20) + 1;
-      let player = game.players[Math.floor(Math.random() * game.players.length)]
+      let playersCanAttack = game.players.filter((player: IPlayer) => {
+        if (player.pv && !player.isInvincible) {
+          return player
+        }
+      })
+      console.log('PlayerCanAttack', playersCanAttack);
 
-      while ((player.isInvincible == undefined || player.isInvincible > 0) && player.pv > 0) {
-        // console.log(game.players[Math.floor(Math.random() * game.players.length)]);
-        player = game.players[Math.floor(Math.random() * game.players.length)]
+      console.log(game.monster);
+
+      let player = playersCanAttack[Math.floor(Math.random() * playersCanAttack.length)]
+      if (game.monster.stunnedMonsterDuration > 0 && !this.deadMonster) {
+        this.isStunned = true; // Set isStunned to true only when monster is stunned and not dead
+      } else {
+        this.isStunned = false; // Set isStunned to false otherwise
       }
-      if (this.monster) {
-        if (this.monster.pv !== game.monster.pv) {
+      // while (game.monster.stunnedMonsterDuration > 0) {
+      //   this.isStunned = true;
+
+      // }
+
+
+      if (this.monster && player) {
+        if (this.monster.pv !== game.monster.pv && game.monster.stunnedMonsterDuration <= 0 && !this.deadMonster) {
           this.isOpen = !this.isOpen;
 
           this.store.dispatch(hitBack({ damage, playerId: player.id }));
@@ -72,4 +103,8 @@ export class MonsterComponent implements OnInit {
     this.isOpen = !this.isOpen;
 
   }
+  get monsterdead(): boolean {
+    return !!this.monster && !!this.monster.pv && this.monster.pv <= 0;
+  }
 }
+

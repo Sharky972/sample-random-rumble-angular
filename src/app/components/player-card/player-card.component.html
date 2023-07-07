@@ -1,4 +1,4 @@
-<div class="card center " style="height: 730px;" *ngIf="player">
+<div class="card center " style="height: 730px;" *ngIf="player" [ngClass]="player.pv <= 0 ? 'dead-card': ''">
   <div class="card-body text-center wrapper">
     <h5 class="card-title title">{{ player.name }}</h5>
     <img class="character" src="{{player.avatar}}" [@attack]="attack ? 'open' : 'closed'" alt="{{player.avatar}}">

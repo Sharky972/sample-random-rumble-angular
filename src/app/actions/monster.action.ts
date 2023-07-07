@@ -4,3 +4,8 @@ export const hitBack = createAction(
     '[Monster] Hit back',
     props<{ damage: number, playerId: number }>(),
 );
+
+export const monsterdead = createAction(
+    '[Monster] Monster dead',
+
+);
