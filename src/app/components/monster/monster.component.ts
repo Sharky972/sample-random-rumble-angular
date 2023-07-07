@@ -70,7 +70,7 @@ export class MonsterComponent implements OnInit {
 
     this.store.select(state => state.game).subscribe((game: GameState) => {
       // Vérifier que le monstre affiche a des pv > game.monster > hitback
-      const damage = Math.floor(Math.random() * 90) + 1;
+      const damage = Math.floor(Math.random() * 40) + 1;
       let playersCanAttack = game.players.filter((player: IPlayer) => {
         if (player.pv && !player.isInvincible) {
           return player
